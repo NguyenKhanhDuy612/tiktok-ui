@@ -1,0 +1,4 @@
+
+input.tk-active-search:not(:placeholder-shown) ~ .tk-active-search svg  {
+    color: black;
+}
