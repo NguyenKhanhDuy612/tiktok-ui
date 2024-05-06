@@ -2,9 +2,9 @@ import React from 'react'
 
 const SideBar = () => {
   return (
-	<div>
+	<aside className='w-[356px]'>
 	  SideBar
-	</div>
+	</aside>
   )
 }
 

@@ -1,19 +1,23 @@
-import React from 'react'
-import Header from '../components/Header/Header'
-import SideBar from './SideBar/SideBar'
-import Footer from '../components/Footer/Footer'
+import React from "react";
+import Header from "../components/Header/Header";
+import SideBar from "./SideBar/SideBar";
+import Footer from "../components/Footer/Footer";
 
-const DefaultLayout = ({children}) => {
+const DefaultLayout = ({ children }) => {
   return (
-	<>
-		<Header />
-		<div className='main'>
-			<SideBar/>
-			<div className='content'>{children}</div>
-		</div>
-		<Footer />
-	</>
-  )
-}
+    <>
+      <Header />
+      <div>
+        <div className="container">
+          <div className="flex">
+            <SideBar />
+            <div className="flex-1">{children}</div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+};
 
-export default DefaultLayout
+export default DefaultLayout;
