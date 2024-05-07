@@ -3,11 +3,13 @@ import images from "../../../../assets/images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCircleXmark,
+	faLocationDot,
 	faMagnifyingGlass,
 	faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import Tippy from '@tippyjs/react/headless';
 import AccountItem from "../../../AccountItem/AccountItem";
+import Button from "../../../Button/Button";
 
 const Header = () => {
 	const [searchResult, setSearchResult] = useState([]);
@@ -54,7 +56,11 @@ const Header = () => {
 							</button>
 						</div>
 					</Tippy>
-					<div>more</div>
+					<div className="space-x-2">
+						{/* <Button text to={'/login'} lefticon={<FontAwesomeIcon icon={faLocationDot} />}>Sign In </Button> */}
+						<Button text > Upload </Button>
+						<Button outline disable  onClick={()=>alert('click')} >Sign In </Button>
+					</div>
 				</div>
 			</div>
 		</header>

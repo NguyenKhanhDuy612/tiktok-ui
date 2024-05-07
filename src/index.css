@@ -14,6 +14,14 @@
   @font-face {
     font-family: 'Barlow';
     font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(./assets/fonts/BarlowSemiCondensed-Medium.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Barlow';
+    font-style: normal;
     font-weight: 600;
     font-display: swap;
     src: url(./assets/fonts/BarlowSemiCondensed-SemiBold.ttf) format('truetype');
