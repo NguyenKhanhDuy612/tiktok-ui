@@ -1,12 +1,43 @@
 import Tippy from '@tippyjs/react/headless';
+
 import MenuItem from './MenuItem';
+import MenuHeader from './MenuHeader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
-const Menu = ({children, items}) => {
+const Menu = ({children, items, onChange}) => {
 
-	console.log('item',items);
-	const renderItems = ()=>(
-		<MenuItem data={items} />
-	)
+	const [history, setHistory] = useState([{data: items}]);
+	console.log('history', history);
+	console.log('items', items);
+
+	const current = history[history.length - 1];
+	console.log('curent', current);
+	const renderItems = ()=>{
+		return(
+			current?.data?.map((item, index)=>{
+				const isParent = !!item.children;
+
+				console.log('isParent', isParent, item.children);
+				return(
+					<li key={index} >
+						<MenuItem item={item} 
+							onClick={()=>{
+								if(isParent){
+									setHistory(prev =>{
+										return([...prev, item.children])
+									})
+								}else(
+									onChange(item)
+								)
+							}}
+						/>
+					</li>
+				)
+			})
+		)
+	}
 
 	return (
 		<>
@@ -15,8 +46,11 @@ const Menu = ({children, items}) => {
 				delay= {[100, 200]}
 				placement='bottom-end'
 				render={attrs => (
-				<div className="min-w-[250px] bg-white border py-6 px-5 rounded-md shadow-lg shadow-indigo-500/50" tabIndex="-1" {...attrs}>
+				<div className="min-w-[250px] bg-white border py-6 rounded-md shadow-lg shadow-indigo-500/50" tabIndex="-1" {...attrs}>
 					<ul className="space-y-2">
+						{history.length > 1 && <MenuHeader icon={<FontAwesomeIcon icon={faAngleLeft}  />} title = 'Language' onBack={()=>(
+							setHistory(history.slice(0,-1))
+						)} />}
 						{renderItems()}
 					</ul>
 				</div>

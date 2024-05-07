@@ -23,7 +23,20 @@ const Header = () => {
 	const MenuItem =[
 		{
 			icon: <FontAwesomeIcon icon={faEarthAsia}/>,
-			title: 'Language'
+			title: 'Language',
+			children:{
+				title: 'Language',
+				data: [
+					{
+						code: 'en',
+						title: 'English'
+					},
+					{
+						code: 'vn',
+						title: 'Vietnamese'
+					}
+				]
+			}
 		},
 		{
 			icon: <FontAwesomeIcon icon={faCircleQuestion}/>,
@@ -36,6 +49,9 @@ const Header = () => {
 		},
 	]
 
+	const handleChange =(menuitem)=>{
+		console.log('menuitem',menuitem);
+	}
 	return (
 		<header className="h-[60px] shadow-[0px_1px_1px_rgba(0,0,0,0.3)] flex items-center">
 			<div className="container">
@@ -80,8 +96,8 @@ const Header = () => {
 					<div className="space-x-2">
 						{/* <Button text to={'/login'} lefticon={<FontAwesomeIcon icon={faLocationDot} />}>Sign In </Button> */}
 						<Button text > Upload </Button>
-						<Button outline disable  onClick={()=>alert('click')} >Sign In </Button>
-						<Menu items={MenuItem} >
+						<Button outline onClick={()=>alert('Not setup')} >Sign In </Button>
+						<Menu items={MenuItem} onChange={(e)=>handleChange(e)} >
 							<span className="p-3 cursor-pointer"><FontAwesomeIcon icon={faEllipsisVertical} /></span>
 						</Menu>
 					</div>
