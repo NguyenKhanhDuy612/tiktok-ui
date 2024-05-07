@@ -38,7 +38,7 @@ const Button = ({to, href, children,  Comp = 'button', passProps, onClick, outli
 	}
 
 	return (
-		<Comp {...props} className={` space-x-1 inline-block  font-medium rounded-md ${outline ? 'border border-red-400 py-[6px] px-[10px] text-blue-400' :'py-2 px-3'} ${text || outline ? '': 'bg-blue-200'} ${text ? 'hover:underline': ''}  ${font} ${disable ? 'pointer-events-none':''}` } >
+		<Comp {...props} className={` space-x-2 inline-block  font-medium rounded-md ${outline ? 'border border-red-400 py-[6px] px-[10px] text-blue-400' :'py-2 px-3'} ${text || outline ? '': 'bg-blue-200'} ${text ? 'hover:underline': ''}  ${font} ${disable ? 'pointer-events-none':''}` } >
 			{lefticon && <span>{lefticon}</span>}
 			<span>{children}</span>
 			{righticon && <span>{righticon}</span>}
