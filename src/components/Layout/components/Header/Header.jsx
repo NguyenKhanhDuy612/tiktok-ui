@@ -7,6 +7,7 @@ import {
 	faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import Tippy from '@tippyjs/react/headless';
+import AccountItem from "../../../AccountItem/AccountItem";
 
 const Header = () => {
 	const [searchResult, setSearchResult] = useState([]);
@@ -22,8 +23,13 @@ const Header = () => {
 					<Tippy
 						visible={visible}
 						render={attrs => (
-						<div className="w-[365px] bg-white border" tabIndex="-1" {...attrs}>
-							My tippy box
+						<div className="w-[365px] bg-white border py-6 px-5 rounded-md" tabIndex="-1" {...attrs}>
+							<h4 className="font-bold">Account</h4>
+							<div className="space-y-2">
+								<AccountItem  />
+								<AccountItem  />
+								<AccountItem  />
+							</div>
 						</div>
 						)}
 					>
