@@ -3,23 +3,24 @@ import images from "../../../../assets/images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCircleQuestion,
-	faCircleXmark,
+	faCloudArrowUp,
+	faComment,
 	faEarthAsia,
 	faEllipsisVertical,
 	faKeyboard,
-	faMagnifyingGlass,
-	faSpinner,
+	faUserLarge,
 } from "@fortawesome/free-solid-svg-icons";
-import Tippy from '@tippyjs/react/headless';
 
-import AccountItem from "../../../AccountItem/AccountItem";
 import Button from "../../../Button/Button";
 import Menu from "../../../Porper/Menu";
+import Popper from "../../../Porper/Popper";
+import Image from "../../../Image";
+import Search from "../Search/Search";
 
 const Header = () => {
-	const [searchResult, setSearchResult] = useState([]);
 	const [visible, setSearchVisible] = useState(true);
 
+	const userActive = true;
 	const MenuItem =[
 		{
 			icon: <FontAwesomeIcon icon={faEarthAsia}/>,
@@ -49,6 +50,15 @@ const Header = () => {
 		},
 	]
 
+	const actionUser =[
+		{
+			icon: <FontAwesomeIcon icon={faUserLarge}/>,
+			title: 'Hello',
+			to: '/upload'
+		},
+		...MenuItem
+	]
+
 	const handleChange =(menuitem)=>{
 		console.log('menuitem',menuitem);
 	}
@@ -59,46 +69,34 @@ const Header = () => {
 					<div>
 						<img className="w-[30px] h-[40px]" src={images.logo} alt="logo" />
 					</div>
-					<Tippy
-						interactive
-						render={attrs => (
-						<div className="w-[365px] bg-white border py-6 px-5 rounded-md shadow-lg shadow-indigo-500/50" tabIndex="-1" {...attrs}>
-							<h4 className="font-bold">Account</h4>
-							<div className="space-y-2">
-								<AccountItem  />
-								<AccountItem  />
-								<AccountItem  />
-							</div>
-						</div>
-						)}
-					>
-						<div className="flex items-center justify-between w-[356px] space-x-2 rounded-[15px] border border-[#eee] py-[5px] px-[10px] focus-within:border-[#8a8d95] relative before:absolute before:border-[#eee] before:border-r-2 before:top-[8px] before:right-[34px] before:h-[24px] before:w-2">
-							<input
-								className="w-[300px] focus:outline-none caret-[#d8d1d1] placeholder-shown:border-gray-500 tk-active-search"
-								type="text"
-								placeholder="Search"
-							/>
-							<button className="hidden absolute right-[44px] text-[#d8d1d1]">
-								<FontAwesomeIcon icon={faCircleXmark} />
-							</button>
-							<button className="hidden absolute right-[44px] text-[#d8d1d1]">
-								<FontAwesomeIcon icon={faSpinner} />
-							</button>
-
-							<button className="tk-active-search">
-								<FontAwesomeIcon
-									className="text-[#d8d1d1]"
-									icon={faMagnifyingGlass}
-								/>
-							</button>
-						</div>
-					</Tippy>
-					<div className="space-x-2">
-						{/* <Button text to={'/login'} lefticon={<FontAwesomeIcon icon={faLocationDot} />}>Sign In </Button> */}
-						<Button text > Upload </Button>
-						<Button outline onClick={()=>alert('Not setup')} >Sign In </Button>
-						<Menu items={MenuItem} onChange={(e)=>handleChange(e)} >
-							<span className="p-3 cursor-pointer"><FontAwesomeIcon icon={faEllipsisVertical} /></span>
+					<Search />
+					<div className="space-x-2 flex items-center">
+						{userActive 
+							? 
+								<div className="space-x-3">
+									<Popper content='Upload'>
+										<FontAwesomeIcon className="cursor-pointer text-2xl" icon={faCloudArrowUp} /> 
+									</Popper>
+									<Popper >
+										<FontAwesomeIcon className="cursor-pointer text-2xl" icon={faComment} /> 
+									</Popper>
+								</div>
+							: 
+							<>
+								{/* <Button text to={'/login'} lefticon={<FontAwesomeIcon icon={faLocationDot} />}>Sign In </Button> */}
+								<Button text > Upload </Button>
+								<Button outline onClick={()=>alert('Not setup')} >Sign In </Button>
+							</>
+						}
+						
+						
+						<Menu items={userActive ? actionUser : MenuItem} onChange={(e)=>handleChange(e)} >
+							{userActive
+								?
+									<Image className="w-[36px] h-[36px] rounded-full overflow-hidden" src={images.logo} alt="logo" fallback='https://upload.wikimedia.org/wikipedia/vi/thumb/4/47/Logo_TP._Nha_Trang.svg/447px-Logo_TP._Nha_Trang.svg.png?20231006084559' />
+								:
+									<span className="p-3 cursor-pointer"><FontAwesomeIcon icon={faEllipsisVertical} /></span>
+							}
 						</Menu>
 					</div>
 				</div>

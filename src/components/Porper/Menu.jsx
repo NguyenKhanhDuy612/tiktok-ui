@@ -45,6 +45,7 @@ const Menu = ({children, items, onChange}) => {
 				interactive
 				delay= {[100, 200]}
 				placement='bottom-end'
+				onHide={()=>(setHistory(history.slice(0,1)))}
 				render={attrs => (
 				<div className="min-w-[250px] bg-white border py-6 rounded-md shadow-lg shadow-indigo-500/50" tabIndex="-1" {...attrs}>
 					<ul className="space-y-2">
