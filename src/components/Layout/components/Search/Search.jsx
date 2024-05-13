@@ -4,6 +4,7 @@ import Tippy from '@tippyjs/react/headless';
 import React, { useEffect, useRef, useState } from "react";
 
 import AccountItem from "../../../AccountItem/AccountItem";
+import { useDebounce } from '../../../../Hooks';
 
 
 function Search() {
@@ -12,17 +13,17 @@ function Search() {
 	const [searchResult, setSearchResult] = useState([1]);
 	const [showResult, setShowResult] = useState(true)
 	const [showLoading, setShowLoading] = useState(false)
-
+	const debounce = useDebounce(searchValue, 500)
 	const searchRef = useRef()
 
 	useEffect(()=>{
 
-		if(!searchValue.trim()){
+		if(!debounce.trim()){
 			return;
 		}
 		setShowLoading(true);
 
-		fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+		fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
 			.then(res => res.json())
 			.then(res =>{
 				setSearchResult(res.data);
@@ -31,7 +32,7 @@ function Search() {
 			.catch(()=>{
 				setShowLoading(true)
 			})
-	},[searchValue])
+	},[debounce])
 
 	console.log('searchResult.length',searchResult.length);
 	console.log('showLoading',showLoading);
@@ -40,7 +41,6 @@ function Search() {
 			interactive
 			visible={showResult && searchResult.length > 1}
 			onClickOutside={()=>setShowResult(false)}
-			onShow={()=>setShowResult(true)}
 			placement='bottom-end'
 			render={(attrs) => (
 				<div
@@ -51,7 +51,7 @@ function Search() {
 				<h4 className="font-bold">Account</h4>
 				<div className="space-y-2">
 					{searchResult && searchResult.map((e, index)=>(
-						<AccountItem key={e?.id || index} data={e}  />
+						<AccountItem key={e?.id + "-" + index} data={e}  />
 					))}
 				</div>
 				</div>
@@ -65,6 +65,7 @@ function Search() {
 				type="text"
 				placeholder="Search"
 				onChange={e => setSearchValue(e.target.value)}
+				onClick={()=>setShowResult(true)}
 				/>
 				{!!searchValue && !showLoading &&
 				
