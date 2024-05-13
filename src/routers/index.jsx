@@ -7,6 +7,7 @@ import Upload from "../pages/Upload/Upload";
 const popularRoute = [
 	{ path: "/", component: Home },
 	{path: '/contact' , component: Contact },
+	{path: '/profile/:nickname' , component: Contact },
 	{path: '/upload', component: Upload, layout: HeaderOnly}
 ];
 

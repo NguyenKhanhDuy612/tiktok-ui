@@ -2,23 +2,25 @@ import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import images from "../../assets/images";
+import Image from "../Image";
+import { Link } from "react-router-dom";
 
-const AccountItem = () => {
+const AccountItem = ({data}) => {
   return (
-    <div className="flex items-center space-x-2">
+    <Link to={`/profile/${data.nickname}`} className="flex items-center space-x-2">
       <img
         className="w-[50px] h-[50px] rounded-full"
-        src={images.logo}
-        alt=""
+        src={data.avatar}
+        alt={data.last_name}
       />
       <div>
         <p className="space-x-2">
-          <span>Nguyen Khanh Duy</span>
-          <FontAwesomeIcon className="text-green-400" icon={faCheckCircle} />
+          <span>{data.full_name}</span>
+          {data. tick && <FontAwesomeIcon className="text-green-400" icon={faCheckCircle} />}
         </p>
-        <span className="text-sm text-[#e2caca]">Nguyen Khanh Duy</span>
+        <span className="text-sm text-[#e2caca]">{data.nickname}</span>
       </div>
-    </div>
+    </Link>
   );
 };
 
