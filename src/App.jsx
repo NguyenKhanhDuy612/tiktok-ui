@@ -4,6 +4,7 @@ import Contact from "./pages/Contact/Contact";
 import { popularRoute } from "./routers";
 import { DefaultLayout, HeaderOnly } from "./components/Layout";
 import { Fragment } from "react";
+import routesConfig from "./config/routes";
 
 function App() {
 	return (
@@ -11,9 +12,9 @@ function App() {
 			
 
 			<nav>
-				<Link to={"/"}>Home</Link>
-				<Link to={"/contact"}>Contact</Link>
-				<Link to={"/upload"}>Upload</Link>
+				<Link to={routesConfig.home}>Home</Link>
+				<Link to={routesConfig.contact}>Contact</Link>
+				<Link to={routesConfig.upload}>Upload</Link>
 			</nav>
 			<Routes>
 				{/* popular */}

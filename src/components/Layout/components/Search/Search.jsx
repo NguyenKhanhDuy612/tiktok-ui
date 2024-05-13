@@ -17,12 +17,19 @@ function Search() {
 	const debounce = useDebounce(searchValue, 500)
 	const searchRef = useRef()
 
+
+	const handleChangeInput =(e)=>{
+		if (!e.startsWith(' ')) {
+			setSearchValue(e);
+		}
+	}
+
 	useEffect(()=>{
 
 		if(!debounce.trim()){
 			return;
 		}
-		
+
 		const getUser = async ()=>{
 				setShowLoading(true)
 
@@ -40,7 +47,10 @@ function Search() {
 		<Tippy
 			interactive
 			visible={showResult && searchResult.length > 1}
-			onClickOutside={()=>setShowResult(false)}
+			onClickOutside={()=>{
+				setShowResult(false);
+				setShowLoading(false);
+			}}
 			placement='bottom-end'
 			render={(attrs) => (
 				<div
@@ -65,7 +75,7 @@ function Search() {
 				type="text"
 				placeholder="Search"
 				onChange={e => {
-					setSearchValue(e.target.value);
+					handleChangeInput(e.target.value)
 					setShowLoading(true);
 				}}
 				onClick={()=>setShowResult(true)}
@@ -84,7 +94,7 @@ function Search() {
 				</button>}
 				
 
-				<button className="tk-active-search">
+				<button className="tk-active-search" onMouseDown={(e)=>e.preventDefault()}>
 				<FontAwesomeIcon
 					className="text-[#d8d1d1]"
 					icon={faMagnifyingGlass}

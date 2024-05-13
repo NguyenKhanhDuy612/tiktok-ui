@@ -16,6 +16,8 @@ import Menu from "../../../Porper/Menu";
 import Popper from "../../../Porper/Popper";
 import Image from "../../../Image";
 import Search from "../Search/Search";
+import routesConfig from "../../../../config/routes";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 	const [visible, setSearchVisible] = useState(true);
@@ -42,7 +44,7 @@ const Header = () => {
 		{
 			icon: <FontAwesomeIcon icon={faCircleQuestion}/>,
 			title: 'Feedback and help',
-			to: '/upload'
+			to: routesConfig.upload
 		},
 		{
 			icon: <FontAwesomeIcon icon={faKeyboard}/>,
@@ -54,7 +56,7 @@ const Header = () => {
 		{
 			icon: <FontAwesomeIcon icon={faUserLarge}/>,
 			title: 'Hello',
-			to: '/upload'
+			to: routesConfig.upload
 		},
 		...MenuItem
 	]
@@ -66,9 +68,9 @@ const Header = () => {
 		<header className="h-[60px] shadow-[0px_1px_1px_rgba(0,0,0,0.3)] flex items-center">
 			<div className="container">
 				<div className="flex justify-between">
-					<div>
+					<Link to={routesConfig.home}>
 						<img className="w-[30px] h-[40px]" src={images.logo} alt="logo" />
-					</div>
+					</Link>
 					<Search />
 					<div className="space-x-2 flex items-center">
 						{userActive 
@@ -93,7 +95,7 @@ const Header = () => {
 						<Menu items={userActive ? actionUser : MenuItem} onChange={(e)=>handleChange(e)} >
 							{userActive
 								?
-									<Image className="w-[36px] h-[36px] rounded-full overflow-hidden" src={images.logo} alt="logo" fallback='https://upload.wikimedia.org/wikipedia/vi/thumb/4/47/Logo_TP._Nha_Trang.svg/447px-Logo_TP._Nha_Trang.svg.png?20231006084559' />
+									<Image className="w-[36px] h-[36px] rounded-full overflow-hidden cursor-pointer" src={images.logo} alt="logo" fallback='https://upload.wikimedia.org/wikipedia/vi/thumb/4/47/Logo_TP._Nha_Trang.svg/447px-Logo_TP._Nha_Trang.svg.png?20231006084559' />
 								:
 									<span className="p-3 cursor-pointer"><FontAwesomeIcon icon={faEllipsisVertical} /></span>
 							}
