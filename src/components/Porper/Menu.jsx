@@ -9,17 +9,14 @@ import { useState } from 'react';
 const Menu = ({children, items, onChange}) => {
 
 	const [history, setHistory] = useState([{data: items}]);
-	console.log('history', history);
-	console.log('items', items);
 
 	const current = history[history.length - 1];
-	console.log('curent', current);
+
 	const renderItems = ()=>{
 		return(
 			current?.data?.map((item, index)=>{
 				const isParent = !!item.children;
 
-				console.log('isParent', isParent, item.children);
 				return(
 					<li key={index} >
 						<MenuItem item={item} 

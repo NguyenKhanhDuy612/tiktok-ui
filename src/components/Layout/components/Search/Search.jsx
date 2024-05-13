@@ -2,9 +2,10 @@ import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react/headless';
 import React, { useEffect, useRef, useState } from "react";
+import { useDebounce } from '../../../../Hooks';
 
 import AccountItem from "../../../AccountItem/AccountItem";
-import { useDebounce } from '../../../../Hooks';
+import * as searchUser from '../../../../apiServices/searchServices';
 
 
 function Search() {
@@ -21,21 +22,20 @@ function Search() {
 		if(!debounce.trim()){
 			return;
 		}
-		setShowLoading(true);
-
-		fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
-			.then(res => res.json())
-			.then(res =>{
-				setSearchResult(res.data);
-				setShowLoading(false);
-			})
-			.catch(()=>{
+		
+		const getUser = async ()=>{
 				setShowLoading(true)
-			})
+
+				const res = await searchUser.searchUser(`${encodeURIComponent(debounce)}`)
+				setSearchResult(res.data);
+
+				setShowLoading(false);
+			
+		}
+
+		getUser()
 	},[debounce])
 
-	console.log('searchResult.length',searchResult.length);
-	console.log('showLoading',showLoading);
 	return (
 		<Tippy
 			interactive
@@ -50,7 +50,7 @@ function Search() {
 				>
 				<h4 className="font-bold">Account</h4>
 				<div className="space-y-2">
-					{searchResult && searchResult.map((e, index)=>(
+					{searchResult && searchResult?.map((e, index)=>(
 						<AccountItem key={e?.id + "-" + index} data={e}  />
 					))}
 				</div>
@@ -64,7 +64,10 @@ function Search() {
 				className="w-[275px] focus:outline-none caret-[#d8d1d1] placeholder-shown:border-gray-500 tk-active-search"
 				type="text"
 				placeholder="Search"
-				onChange={e => setSearchValue(e.target.value)}
+				onChange={e => {
+					setSearchValue(e.target.value);
+					setShowLoading(true);
+				}}
 				onClick={()=>setShowResult(true)}
 				/>
 				{!!searchValue && !showLoading &&
