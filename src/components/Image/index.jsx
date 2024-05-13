@@ -8,7 +8,7 @@ const Image = ({src, fallback: setImage = images.noImg, ...props}, ref) => {
 		setFallback(setImage)
 	}
 	return (
-		<img ref={ref} {...props} src={ src} onError={handleImage}   />
+		<img ref={ref} {...props} src={fallback || src} onError={handleImage}   />
 	)
 }
 

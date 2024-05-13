@@ -46,10 +46,10 @@ const Menu = ({children, items, onChange}) => {
 				hideOnClick={false}
 				render={attrs => (
 				<div className="min-w-[250px] bg-white border py-6 rounded-md shadow-lg shadow-indigo-500/50" tabIndex="-1" {...attrs}>
-					<ul className="space-y-2">
-						{history.length > 1 && <MenuHeader icon={<FontAwesomeIcon icon={faAngleLeft}  />} title = 'Language' onBack={()=>(
-							setHistory(history.slice(0,-1))
-						)} />}
+					{history.length > 1 && <MenuHeader icon={<FontAwesomeIcon icon={faAngleLeft}  />} title = 'Language' onBack={()=>(
+						setHistory(history.slice(0,-1))
+					)} />}
+					<ul className="space-y-2 overflow-auto max-h-[500px]">
 						{renderItems()}
 					</ul>
 				</div>

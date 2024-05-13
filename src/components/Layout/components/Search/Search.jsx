@@ -44,6 +44,7 @@ function Search() {
 	},[debounce])
 
 	return (
+		<div>
 		<Tippy
 			interactive
 			visible={showResult && searchResult.length > 1}
@@ -102,6 +103,7 @@ function Search() {
 				</button>
 			</div>
 		</Tippy>
+		</div>
 	);
 }
 

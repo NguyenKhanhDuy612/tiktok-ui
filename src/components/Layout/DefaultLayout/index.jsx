@@ -7,7 +7,7 @@ const DefaultLayout = ({ children }) => {
   return (
     <>
       <Header />
-      <div>
+      <div className="mt-[60px] h-screen">
         <div className="container">
           <div className="flex">
             <SideBar />

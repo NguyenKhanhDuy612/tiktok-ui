@@ -65,7 +65,7 @@ const Header = () => {
 		console.log('menuitem',menuitem);
 	}
 	return (
-		<header className="h-[60px] shadow-[0px_1px_1px_rgba(0,0,0,0.3)] flex items-center">
+		<header className="h-[60px] shadow-[0px_1px_1px_rgba(0,0,0,0.3)] flex items-center fixed top-0 left-0 bottom-0 right-0 z-40 bg-white">
 			<div className="container">
 				<div className="flex justify-between">
 					<Link to={routesConfig.home}>

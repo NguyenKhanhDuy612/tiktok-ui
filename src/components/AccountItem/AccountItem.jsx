@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const AccountItem = ({data}) => {
   return (
     <Link to={`/profile/${data.nickname}`} className="flex items-center space-x-2">
-      <img
+      <Image
         className="w-[50px] h-[50px] rounded-full"
         src={data.avatar}
         alt={data.last_name}
