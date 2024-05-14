@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const Button = ({
 	to,
@@ -76,5 +77,21 @@ const Button = ({
 		</Comp>
 	);
 };
+
+Button.protoTypes = {
+	to: PropTypes.string,
+	href: PropTypes.string,
+	children: PropTypes.node.isRequired,
+	Comp: PropTypes.string,
+	passProps: PropTypes.string,
+	onClick: PropTypes.function,
+	outline: PropTypes.bool,
+	text: PropTypes.bool,
+	textMenu: PropTypes.bool,
+	disable: PropTypes.bool,
+	size: PropTypes.string,
+	lefticon: PropTypes.node,
+	righticon: PropTypes.node,
+}
 
 export default Button;
