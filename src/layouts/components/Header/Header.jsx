@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import images from "../../../../assets/images";
+import images from "../../../assets/images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCircleQuestion,
@@ -11,13 +11,13 @@ import {
 	faUserLarge,
 } from "@fortawesome/free-solid-svg-icons";
 
-import Button from "../../../Button/Button";
-import Menu from "../../../Porper/Menu";
-import Popper from "../../../Porper/Popper";
-import Image from "../../../Image";
+import Button from "../../../components/Button/Button";
+import Menu from "../../../components/Porper/Menu";
+import Popper from "../../../components/Porper/Popper";
+import Image from "../../../components/Image";
 import Search from "../Search/Search";
-import routesConfig from "../../../../config/routes";
 import { Link } from "react-router-dom";
+import config from "../../../config";
 
 const Header = () => {
 	const [visible, setSearchVisible] = useState(true);
@@ -44,7 +44,7 @@ const Header = () => {
 		{
 			icon: <FontAwesomeIcon icon={faCircleQuestion}/>,
 			title: 'Feedback and help',
-			to: routesConfig.upload
+			to: config.upload
 		},
 		{
 			icon: <FontAwesomeIcon icon={faKeyboard}/>,
@@ -56,7 +56,7 @@ const Header = () => {
 		{
 			icon: <FontAwesomeIcon icon={faUserLarge}/>,
 			title: 'Hello',
-			to: routesConfig.upload
+			to: config.upload
 		},
 		...MenuItem
 	]
@@ -68,7 +68,7 @@ const Header = () => {
 		<header className="h-[60px] shadow-[0px_1px_1px_rgba(0,0,0,0.3)] flex items-center fixed top-0 left-0 bottom-0 right-0 z-40 bg-white">
 			<div className="container">
 				<div className="flex justify-between">
-					<Link to={routesConfig.home}>
+					<Link to={config.home}>
 						<img className="w-[30px] h-[40px]" src={images.logo} alt="logo" />
 					</Link>
 					<Search />

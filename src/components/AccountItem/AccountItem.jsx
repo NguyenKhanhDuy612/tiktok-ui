@@ -1,7 +1,6 @@
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import images from "../../assets/images";
 import Image from "../Image";
 import { Link } from "react-router-dom";
 

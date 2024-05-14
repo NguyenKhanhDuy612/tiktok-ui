@@ -1,55 +1,80 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Button = ({to, href, children,  Comp = 'button', passProps, onClick, outline = false, text = false, textMenu = false, disable= false, size = 'md', lefticon, righticon}) => {
-	let font;
+const Button = ({
+	to,
+	href,
+	children,
+	Comp = "button",
+	passProps,
+	onClick,
+	outline = false,
+	text = false,
+	textMenu = false,
+	disable = false,
+	size = "md",
+	lefticon,
+	righticon,
+}) => {
+  	let font;
 
 	//
 	const props = {
 		onClick,
 		lefticon,
 		righticon,
-		...passProps
+		...passProps,
 	};
 
 	// link
-	if(to){
+	if (to) {
 		Comp = Link;
 		props.to = to;
 	}
 
-	if(href){
+	if (href) {
 		props.href = href;
-		Comp ='a'
+		Comp = "a";
 	}
 
 	// size
-	if(size == 'lg'){
-		font = 'text-2xl'
-	}else if (size == 'sm') {
-		font = 'text-sm'
-	}else{
-		font = 'text-xl'
+	if (size == "lg") {
+		font = "text-2xl";
+	} else if (size == "sm") {
+		font = "text-sm";
+	} else {
+		font = "text-xl";
 	}
 
 	// remove click
-	if(disable){
+	if (disable) {
 		delete props.onClick;
 	}
 
 	return (
-		<Comp {...props} className={` space-x-2 inline-block  font-medium rounded-md 
-		${outline ? 'border border-blue-400 py-[6px] px-[10px] text-blue-400' :'py-2 px-3'} 
-		${text || outline ? '': 'bg-blue-200'} 
-		${text ? 'hover:underline': ''} 
-		${textMenu ? 'hover:bg-blue-200 bg-transparent px-5 text-left rounded-none w-full': ''}  
-		${font} 
-		${disable ? 'pointer-events-none':''}` } >
-			{lefticon && <span>{lefticon}</span>}
-			<span>{children}</span>
-			{righticon && <span>{righticon}</span>}
+		<Comp
+		{...props}
+		className={` space-x-2 inline-block  font-medium rounded-md 
+			${
+		outline
+			? "border border-blue-400 py-[6px] px-[10px] text-blue-400"
+			: "py-2 px-3"
+		} 
+			${text || outline ? "" : "bg-blue-200"} 
+			${text ? "hover:underline" : ""} 
+			${
+		textMenu
+			? "hover:bg-blue-200 bg-transparent px-5 text-left rounded-none w-full"
+			: ""
+		}  
+			${font} 
+			${disable ? "pointer-events-none" : ""}`}
+		>
+		{lefticon && <span>{lefticon}</span>}
+		<span>{children}</span>
+		{righticon && <span>{righticon}</span>}
 		</Comp>
-	)
-}
+	);
+};
 
-export default Button
+export default Button;

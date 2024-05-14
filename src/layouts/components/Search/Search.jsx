@@ -2,10 +2,10 @@ import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react/headless';
 import React, { useEffect, useRef, useState } from "react";
-import { useDebounce } from '../../../../Hooks';
+import { useDebounce } from '../../../hooks';
 
-import AccountItem from "../../../AccountItem/AccountItem";
-import * as searchUser from '../../../../apiServices/searchServices';
+import AccountItem from "../../../components/AccountItem/AccountItem";
+import * as searchUser from '../../../services/searchServices';
 
 
 function Search() {
