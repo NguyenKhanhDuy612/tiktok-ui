@@ -3,6 +3,7 @@ import { popularRoute } from "./routers";
 import { Fragment } from "react";
 import config from "./config";
 import { DefaultLayout } from "./layouts";
+import Counter from "./test/Counter";
 
 function App() {
 	return (
@@ -35,11 +36,13 @@ function App() {
 								</Layout>
 							}
 						></Route>
+						
 					);
 				})}
 
 				{/* private */}
 			</Routes>
+			<Counter />
 		</>
 	);
 }
